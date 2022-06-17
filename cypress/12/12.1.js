@@ -25,21 +25,15 @@ it('Array task 1-5', () => {
     })
 
     //task 4
-    cy.log('Set has UAN value: ' + currencySet.has('UAN'))
+    cy.log(`Set has UAN value: ${currencySet.has('UAN')}`)
     currencySet.delete('UAN')
-    cy.log('Set has UAN value: ' + currencySet.has('UAN'))
+    cy.log(`Set has UAN value: ${currencySet.has('UAN')}`)
 
     //task 5
     let currencyArray = Array.from(currencySet)
-    cy.log('1 random value: ' + chance.pickone(currencyArray))
-    cy.log(
-        'Few random values: ' +
-            chance.pickset(
-                currencyArray,
-                chance.integer({ min: 1, max: currencySet.size })
-            )
-    )
-})
+    cy.log(`1 random value: ${chance.pickone(currencyArray)}`)
+    const randomValues = chance.pickset(currencyArray, chance.integer({ min: 1, max: currencySet.size }))
+    cy.log(`Few random values: ${randomValues}`)})
 
 //task 6
 it('Array task 6', () => {
@@ -47,20 +41,23 @@ it('Array task 6', () => {
     let setB = new Set(['USD', 'RUB', 'UAN'])
     let setC = new Set(['RUB', 'SEK', 'BYN', 'PLN'])
 
-    cy.log('isSuperset:' + isSuperset(setA, setB))
+    cy.log(`isSuperset: ${isSuperset(setA, setB)}`)
 
     cy.log('Union:')
-    union(setA, setC).forEach((currency) => {
+    const Union = union(setA, setC)
+    Union.forEach((currency) => {
         cy.log(currency)
     })
 
     cy.log('Intersection:')
-    intersection(setA, setB).forEach((currency) => {
+    const inters = intersection(setA, setB)
+    inters.forEach((currency) => {
         cy.log(currency)
     })
 
     cy.log('Difference:')
-    difference(setA, setC).forEach((currency) => {
+    const diff = difference(setA, setC)
+    diff.forEach((currency) => {
         cy.log(currency)
     })
 })

@@ -7,28 +7,28 @@ export const isSuperset = (set, subset) => {
     return true
 }
 
-export const union = (setA, setB) => {
-    let _union = new Set(setA)
-    setB.forEach((elem) => {
-        _union.add(elem)
+export const union = (firstSet, secondSet) => {
+    let Union = new Set(firstSet)
+    secondSet.forEach((elem) => {
+        Union.add(elem)
     })
-    return _union
+    return Union
 }
 
-export const intersection = (setA, setB) => {
-    let _intersection = new Set()
-    setB.forEach((elem) => {
-        if (setA.has(elem)) {
-            _intersection.add(elem)
+export const intersection = (firstSet, secondSet) => {
+    let Intersection = new Set()
+    secondSet.forEach((elem) => {
+        if (firstSet.has(elem)) {
+            Intersection.add(elem)
         }
     })
-    return _intersection
+    return Intersection
 }
 
-export const difference = (setA, setB) => {
-    let _difference = new Set(setA)
-    setB.forEach((elem) => {
-        _difference.delete(elem)
+export const difference = (firstSet, secondSet) => {
+    let Difference = new Set(firstSet)
+    secondSet.forEach((elem) => {
+        Difference.delete(elem)
     })
-    return _difference
+    return Difference
 }
