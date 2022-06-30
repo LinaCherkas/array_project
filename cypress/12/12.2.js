@@ -28,7 +28,7 @@ it('Print planets method:', () => {
 //task 2
 let newPlanets = planets.map((planet) => ({ ...planet, solarSystem: true }))
 
-function printPlanetsInRow(planets) {
+export function printPlanetsInRow(planets) {
     planets.forEach((planet) => {
         cy.log(
             Object.keys(planet)

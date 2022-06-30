@@ -4,11 +4,11 @@ class CurrencyConverterPage {
     }
 
     get inputFromCurrency() {
-        return cy.get("input[id='midmarketFromCurrency']")
+        return cy.get("#midmarketFromCurrency")
     }
 
     get inputToCurrency() {
-        return cy.get("input[id='midmarketToCurrency']")
+        return cy.get("#midmarketToCurrency")
     }
 
     get convertButton() {
@@ -16,13 +16,13 @@ class CurrencyConverterPage {
     }
 
     checkResult(currency) {
-        cy.contains(currency.rate.toString()).should('exist')
+        cy.contains("p[class*='result__BigRate']",currency.rate).should('exist')
     }
 
     performConvertation(currencyFromConvert, currencyToConvert) {
-        this.inputFromCurrency.type(`${currencyFromConvert.base}{enter}`)
-        this.inputToCurrency.type(`${currencyToConvert.shortName}{enter}`)
-        this.convertButton.click()
+        this.inputFromCurrency.type(`${currencyFromConvert.base}`)
+        this.inputToCurrency.type(`${currencyToConvert.shortName}`)
+        this.convertButton.click({force: true})
     }
 }
 

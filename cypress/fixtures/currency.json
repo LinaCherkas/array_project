@@ -4,7 +4,7 @@
     "rates": [
         { "shortName": "CAD", "rate": 1.28 },
         { "shortName": "CHF", "rate": 0.95 },
-        { "shortName": "EUR", "rate": 0.94 },
+        { "shortName": "EUR", "rate": 0.95 },
         { "shortName": "GBP", "rate": 0.81 }
     ]
 }
