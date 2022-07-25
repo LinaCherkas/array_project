@@ -1,5 +1,5 @@
 import 'chance'
-import { isSuperset, difference, union, intersection } from '../utils/helper'
+import { isSuperset, difference, union, intersection } from '../../utils/helper'
 
 it('Array task 1-5', () => {
     //task 1

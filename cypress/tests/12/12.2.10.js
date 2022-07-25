@@ -1,4 +1,4 @@
-import currencyConverterPage from '../page_objects/currencyConverterPage'
+import currencyConverterPage from '../../page_objects/currencyConverterPage'
 import 'chance'
 
 describe('Convert currency test', () => {
