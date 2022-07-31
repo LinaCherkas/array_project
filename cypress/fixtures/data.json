@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Pixel Buds Pro",
+        "cart_name": "Pixel Buds Pro",
+        "colors": ["Charcoal", "Fog", "Lemongrass", "Coral"],
+        "price": "$199.99"
+    },
+    {
+        "name": "Nest Cam (battery)",
+        "cart_name": "Nest Cam (outdoor or indoor, battery)",
+        "colors": null,
+        "price": ["$179.99", "$329.99"]
+    }
+]
