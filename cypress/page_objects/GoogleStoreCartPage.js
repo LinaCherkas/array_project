@@ -1,6 +1,6 @@
 class GoogleStoreCartPage {
-    get openCart() {
-        return cy.get('a[data-test*="header-cart"]')
+    openCartClick() {
+        return cy.get('a[data-test*="header-cart"]').click()
     }
 
     checkProductName(name) {
@@ -15,12 +15,12 @@ class GoogleStoreCartPage {
         cy.contains('p', price).should('exist')
     }
 
-    checkProductCartQuantity() {
-        return cy.contains('span', '(1 item)').should('exist')
+    checkProductCartQuantity(productCartQuantity) {
+        return cy.contains('span', `(${productCartQuantity} item)`).should('exist')
     }
 
-    checkProductQuantityinCart() {
-        return cy.get('select[data-selected-quantity="1"]').should('exist')
+    checkProductQuantityInCart(productQuantity) {
+        return cy.get(`select[data-selected-quantity=${productQuantity}]`).should('exist')
     }
 }
 

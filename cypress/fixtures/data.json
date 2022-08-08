@@ -3,12 +3,15 @@
         "name": "Pixel Buds Pro",
         "cart_name": "Pixel Buds Pro",
         "colors": ["Charcoal", "Fog", "Lemongrass", "Coral"],
-        "price": "$199.99"
+        "price": "$199.99",
+        "saving_price": null
     },
     {
         "name": "Nest Cam (battery)",
         "cart_name": "Nest Cam (outdoor or indoor, battery)",
+        "saved_name": "Nest Cam Indoor(battery)",
         "colors": null,
-        "price": ["$179.99", "$329.99"]
+        "price": ["$179.99", "$329.99"],
+        "saving_price": "$63.98"
     }
 ]

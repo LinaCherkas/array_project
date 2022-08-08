@@ -3,21 +3,24 @@ class GoogleStoreHomeElementPage {
         cy.visit('https://store.google.com/us/?hl=en-US&regionRedirect=true')
     }
 
-    chooseElement(element) {
-        return cy.get(`a[aria-label*="${element.name}"]`)
+    chooseElementClick(element) {
+        return cy.get(`a[aria-label*="${element.name}"]`).click()
     }
 
-    get buyButton() {
-        return cy.contains('button', 'Buy').eq(0)
+    buyButtonClick() {
+        return cy.contains('button', 'Buy').eq(0).click({ force: true })
     }
 
-    chooseColorAndPrice(element, randomColor, randomPrice) {
+    chooseColor(element, randomColor) {
         if (element.colors != null) {
             cy.contains("[data-test='total-price']", '/month', {
                 timeout: 10000,
             }).should('be.visible')
             cy.get(`div[aria-label=${randomColor}]`).click({ force: true })
         }
+    }
+
+    choosePrice(element, randomPrice) {
         if (typeof element.price !== 'string' && element.price.length > 1) {
             cy.contains("[data-test='total-price']", '/month', {
                 timeout: 10000,
@@ -26,12 +29,12 @@ class GoogleStoreHomeElementPage {
         }
     }
 
-    get addToCartButton() {
-        return cy.get("button[aria-label*='Add to cart']")
+    addToCartButtonClick() {
+        return cy.get("button[aria-label*='Add to cart']").click({ force: true })
     }
 
-    waitingElement() {
-        cy.contains("span[aria-label*='1 item in cart']", '1', {
+    waitingCartQuantityElement(elementQuantity) {
+        cy.contains(`span[aria-label*='${elementQuantity} item in cart']`, elementQuantity, {
             timeout: 10000,
         }).should('be.visible')
     }
