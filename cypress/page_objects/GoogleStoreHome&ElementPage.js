@@ -23,7 +23,7 @@ class GoogleStoreHomeElementPage {
     choosePrice(element, randomPrice) {
         if (typeof element.price !== 'string' && element.price.length > 1) {
             cy.contains("[data-test='total-price']", '/month', {
-                timeout: 10000,
+                timeout: 12000,
             }).should('be.visible')
             cy.contains('div', randomPrice[0]).click({ force: true })
         }
