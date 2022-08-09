@@ -46,7 +46,7 @@ describe('User is able to add the products to the cart', function () {
 
             GoogleStoreCartPage.checkProductColor(
                 element.colors,
-                randomColor[0]
+                randomColor
             )
 
             cy.log(
@@ -58,8 +58,6 @@ describe('User is able to add the products to the cart', function () {
             cy.log('AND the items quantity in the cart should be 1')
             GoogleStoreCartPage.checkProductCartQuantity('1')
 
-            cy.log('AND the product quantity in the cart should be 1')
-            GoogleStoreCartPage.checkProductQuantityInCart('1')
             cy.clearCookies()
         })
     })
