@@ -11,8 +11,8 @@ class GoogleStoreHomeElementPage {
         return cy.contains('button', 'Buy').eq(0).click({ force: true })
     }
 
-    chooseColor(element, randomColor) {
-        if (element.colors != null) {
+    chooseColor(colors, randomColor) {
+        if (colors != null) {
             cy.contains("[data-test='total-price']", '/month', {
                 timeout: 10000,
             }).should('be.visible')
@@ -20,8 +20,8 @@ class GoogleStoreHomeElementPage {
         }
     }
 
-    choosePrice(element, randomPrice) {
-        if (typeof element.price !== 'string' && element.price.length > 1) {
+    choosePrice(price, randomPrice) {
+        if (typeof price !== 'string' && price.length > 1) {
             cy.contains("[data-test='total-price']", '/month', {
                 timeout: 12000,
             }).should('be.visible')
@@ -30,13 +30,19 @@ class GoogleStoreHomeElementPage {
     }
 
     addToCartButtonClick() {
-        return cy.get("button[aria-label*='Add to cart']").click({ force: true })
+        return cy
+            .get("button[aria-label*='Add to cart']")
+            .click({ force: true })
     }
 
     waitingCartQuantityElement(elementQuantity) {
-        cy.contains(`span[aria-label*='${elementQuantity} item in cart']`, elementQuantity, {
-            timeout: 10000,
-        }).should('be.visible')
+        cy.contains(
+            `span[aria-label*='${elementQuantity} item in cart']`,
+            elementQuantity,
+            {
+                timeout: 10000,
+            }
+        ).should('be.visible')
     }
 }
 

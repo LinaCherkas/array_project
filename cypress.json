@@ -1,4 +1,5 @@
 {
   "projectId": "gmxzh1",
-  "integrationFolder": "cypress/tests"
+  "integrationFolder": "cypress/tests",
+  "defaultCommandTimeout": 10000
 }

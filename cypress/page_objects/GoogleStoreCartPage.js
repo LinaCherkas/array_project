@@ -36,20 +36,18 @@ class GoogleStoreCartPage {
     checkTotalPrice(products, randomPrice, productQuantity) {
         let totalPrice = 0
         products.forEach((element) => {
-            if (typeof element.price !== 'string' && element.price.length > 1) {
-                let price = randomPrice.get(element.name)[0].substring(1)
-                totalPrice += parseFloat(price) * productQuantity
-            } else {
-                let price = element.price.substring(1)
-                totalPrice += parseFloat(price) * productQuantity
-            }
+            let price =
+                typeof element.price !== 'string' && element.price.length > 1
+                    ? randomPrice.get(element.name)[0].substring(1)
+                    : element.price.substring(1)
+            totalPrice += parseFloat(price) * productQuantity
         })
-        cy.wait(2000) //force to use wait because calculations after element quantity changes are too low
+
         cy.get('p[class="B7xUP"]>span')
             .eq(0)
             .invoke('text')
             .then((text) => {
-                expect(text.replace('$', '').replace(',', '')).to.eq(
+                expect(text.replace('$', '').replaceAll(',', '')).to.eq(
                     totalPrice.toString()
                 )
             })

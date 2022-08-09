@@ -25,8 +25,8 @@ describe('User is able to add the products to the cart', function () {
             GoogleStoreHomeElementPage.buyButtonClick()
 
             cy.log('AND chooses the Color and the Price of the Product')
-            GoogleStoreHomeElementPage.chooseColor(element, randomColor)
-            GoogleStoreHomeElementPage.choosePrice(element, randomPrice)
+            GoogleStoreHomeElementPage.chooseColor(element.colors, randomColor)
+            GoogleStoreHomeElementPage.choosePrice(element.price, randomPrice)
 
             cy.log('AND adds product to the cart')
             GoogleStoreHomeElementPage.addToCartButtonClick()
@@ -44,16 +44,13 @@ describe('User is able to add the products to the cart', function () {
                 'AND the product color from the cart should be matched with the product color from the file'
             )
 
-            GoogleStoreCartPage.checkProductColor(
-                element.colors,
-                randomColor
-            )
+            GoogleStoreCartPage.checkProductColor(element.colors, randomColor)
 
             cy.log(
                 'AND the product price from the cart should be matched with the product price from the file'
             )
 
-            GoogleStoreCartPage.checkProductPrice(element.price, randomPrice[0])
+            GoogleStoreCartPage.checkProductPrice(element.price, randomPrice)
 
             cy.log('AND the items quantity in the cart should be 1')
             GoogleStoreCartPage.checkProductCartQuantity('1')
@@ -67,6 +64,7 @@ describe('User story: User is able to change the quantity of products in the car
     let randomColor = new Map()
     let randomPrice = new Map()
     let productQuantity = '2'
+
     beforeEach(() => {
         products.forEach((element) => {
             if (element.colors !== null) {
@@ -81,48 +79,48 @@ describe('User story: User is able to change the quantity of products in the car
         })
     })
 
-    it(
-        'Check the data of the edit products',
-        { defaultCommandTimeout: 10000 },
-        function () {
-            cy.log('GIVEN user is in the Cart')
-            GoogleStoreCartPage.visitCart()
+    it('Check the data of the edit products', function () {
+        cy.log('GIVEN user is in the Cart')
+        GoogleStoreCartPage.visitCart()
 
-            cy.log('WHEN the changes the products quantity in the cart')
-            products.forEach((element, index) => {
-                cy.get('select[aria-label="Product Quantity"]')
-                    .eq(index)
-                    .select(productQuantity)
-            })
+        cy.log('WHEN the changes the products quantity in the cart')
+        products.forEach((element, index) => {
+            cy.get('select[aria-label="Product Quantity"]')
+                .eq(index)
+                .select(productQuantity)
+            // cy.intercept(
+            //     'https://store.google.com/_/Gstore/data/batchexecute?rpcids=n9uf&source-path=%2Fus%2Fcart&f.sid=-5566690099524582570&bl=boq_gstore-neo_20220803.08_p2&hl=en-US&authuser=0&_reqid=1584720&rt=c'
+            // ).as('getSettings')
+            // cy.wait('@getSettings')
+        })
 
-            cy.log('THEN the right products data should be displayed')
-            products.forEach((element) => {
-                GoogleStoreCartPage.checkProductName(element.cart_name)
-                GoogleStoreCartPage.checkProductColor(
-                    element.colors,
-                    randomColor.get(element.name)
-                )
-                GoogleStoreCartPage.checkProductPrice(
-                    element.price,
-                    randomPrice.get(element.name)
-                )
-            })
-
-            cy.log('AND the right Subtotal price should be displayed')
-            GoogleStoreCartPage.checkTotalPrice(
-                products,
-                randomPrice,
-                productQuantity
+        cy.log('THEN the right products data should be displayed')
+        products.forEach((element) => {
+            GoogleStoreCartPage.checkProductName(element.cart_name)
+            GoogleStoreCartPage.checkProductColor(
+                element.colors,
+                randomColor.get(element.name)
             )
-        }
-    )
+            GoogleStoreCartPage.checkProductPrice(
+                element.price,
+                randomPrice.get(element.name)
+            )
+        })
+
+        cy.log('AND the right Subtotal price should be displayed')
+        GoogleStoreCartPage.checkTotalPrice(
+            products,
+            randomPrice,
+            productQuantity
+        )
+    })
 })
 
 function addProductToCart(element, randomPrice, randomColor) {
     GoogleStoreHomeElementPage.open()
     GoogleStoreHomeElementPage.chooseElementClick(element)
     GoogleStoreHomeElementPage.buyButtonClick()
-    GoogleStoreHomeElementPage.chooseColor(element, randomColor)
-    GoogleStoreHomeElementPage.choosePrice(element, randomPrice)
+    GoogleStoreHomeElementPage.chooseColor(element.colors, randomColor)
+    GoogleStoreHomeElementPage.choosePrice(element.price, randomPrice)
     GoogleStoreHomeElementPage.addToCartButtonClick()
 }
